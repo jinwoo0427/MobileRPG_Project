@@ -13,14 +13,13 @@ public class BasicRigidBodyPush : MonoBehaviour
 
 	private void PushRigidBodies(ControllerColliderHit hit)
 	{
-		// https://docs.unity3d.com/ScriptReference/CharacterController.OnControllerColliderHit.html
-
-		// make sure we hit a non kinematic rigidbody
+		// 키메네틱 인지 확인
 		Rigidbody body = hit.collider.attachedRigidbody;
 		if (body == null || body.isKinematic) return;
 
-		// make sure we only push desired layer(s)
-		var bodyLayerMask = 1 << body.gameObject.layer;
+        // 원하는 레이어만 푸시
+
+        var bodyLayerMask = 1 << body.gameObject.layer;
 		if ((bodyLayerMask & pushLayers.value) == 0) return;
 
 		// We dont want to push objects below us
